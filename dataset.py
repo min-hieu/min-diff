@@ -3,7 +3,7 @@ import numpy as np
 from torch.utils.data import Dataset, DataLoader
 from sklearn import datasets
 
-def normalize(ds, scaling_factor=2.):
+def normalize(ds, scaling_factor=1.):
     return (ds - ds.mean()) / \
             ds.std() * scaling_factor
 
@@ -53,6 +53,12 @@ def load_twodim(num_samples: int,
         X, y = datasets.make_moons(
             n_samples=num_samples, noise=0.0, random_state=None)
         sample = normalize(X)
+        
+    if dataset == 'moon_distort':
+        X, y = datasets.make_moons(
+            n_samples=num_samples, noise=0.0, random_state=None)
+        sample = torch.tensor(normalize(X))
+        sample[:,0] = -sample[:,0]
 
     if dataset == 'swiss_roll':
         X, y = datasets.make_swiss_roll(
