@@ -1,6 +1,3 @@
-%load_ext autoreload
-%autoreload 2
-
 from dataset import TwoDimDataClass
 import matplotlib.pyplot as plt
 import numpy as np
